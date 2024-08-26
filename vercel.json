@@ -2,12 +2,9 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node"
+      "use": "@vercel/next"
     }
   ],
-  "hooks": {
-    "build": "npm run build && npx prisma generate"
-  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]
