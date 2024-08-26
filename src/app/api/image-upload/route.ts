@@ -4,7 +4,7 @@ import { auth } from '@clerk/nextjs/server';
 
 // Configuration
 cloudinary.config({ 
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME, 
     api_key: process.env.CLOUDINARY_API_KEY, 
     api_secret: process.env.CLOUDINARY_API_SECRET 
 });
@@ -15,6 +15,7 @@ interface CloudinaryUploadResult{
 }
 
 export async function POST(request: NextRequest) {
+    console.log('aaus')
     try {
         const {userId} = auth();
 
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest) {
         }
     
         if(
-            !process.env.CLOUDINARY_CLOUD_NAME ||
+            !process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ||
             !process.env.CLOUDINARY_API_KEY ||
             !process.env.CLOUDINARY_API_SECRET
         ){
@@ -32,6 +33,7 @@ export async function POST(request: NextRequest) {
 
         const formData = await request.formData();
         const file = formData.get('file') as File|null;
+        console.log(file)
 
         if(!file){
             return NextResponse.json({error: "File not found"}, {status: 400})
@@ -47,6 +49,7 @@ export async function POST(request: NextRequest) {
                     if(result){
                         resolve(result);
                     } else {
+                        console.log(error);
                         reject(error);
                     }
                 }
@@ -57,7 +60,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({publicId: result.public_id}, {status: 200})
     } catch (error) {
         console.log(error,'upload error');
-        return NextResponse.json({error: "Something went wrong"}, {status: 500})
+        return NextResponse.json({error: error}, {status: 500})
     }
 
 }
