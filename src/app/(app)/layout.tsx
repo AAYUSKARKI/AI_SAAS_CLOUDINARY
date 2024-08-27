@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useClerk, useUser } from "@clerk/nextjs";
+// import { useClerk, useUser } from "@clerk/nextjs";
 import {
   LogOutIcon,
   MenuIcon,
@@ -27,16 +27,16 @@ export default function AppLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  const { signOut } = useClerk();
-  const { user } = useUser();
+  // const { signOut } = useClerk();
+  // const { user } = useUser();
 
   const handleLogoClick = () => {
     router.push("/");
   };
 
-  const handleSignOut = async () => {
-    await signOut();
-  };
+  // const handleSignOut = async () => {
+  //   await signOut();
+  // };
 
   return (
     <div className="drawer lg:drawer-open">
@@ -66,7 +66,7 @@ export default function AppLayout({
                 </div>
               </Link>
             </div>
-            <div className="flex-none flex items-center space-x-4">
+            {/* <div className="flex-none flex items-center space-x-4">
               {user && (
                 <>
                   <div className="avatar">
@@ -90,7 +90,7 @@ export default function AppLayout({
                   </button>
                 </>
               )}
-            </div>
+            </div> */}
           </div>
         </header>
         {/* Page content */}
@@ -124,7 +124,7 @@ export default function AppLayout({
               </li>
             ))}
           </ul>
-          {user && (
+          {/* {user && (
             <div className="p-4">
               <button
                 onClick={handleSignOut}
@@ -134,7 +134,7 @@ export default function AppLayout({
                 Sign Out
               </button>
             </div>
-          )}
+          )} */}
         </aside>
       </div>
     </div>

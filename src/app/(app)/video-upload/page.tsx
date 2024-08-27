@@ -14,7 +14,7 @@ function VideoUpload() {
 
   //max file size of 670 MB
 
-  const MAX_FILE_SIZE = 670 * 1024 * 1024
+  const MAX_FILE_SIZE = 95 * 1024 * 1024
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -25,7 +25,7 @@ function VideoUpload() {
     }
 
     if (file.size > MAX_FILE_SIZE) {
-      alert('File size is too large')
+      alert('File size is too large, please select a smaller file less than 95 MB')
       return
     }
 
@@ -100,10 +100,10 @@ function VideoUpload() {
         </div>
         <button
           type='submit'
-          className='btn btn-primary'
+          className='btn btn-primary text-white'
           disabled={isUploading}
         >
-          {isUploading ? 'Uploading...' : 'Upload'}
+          {isUploading ? 'Uploading ...' : 'Upload'}
         </button>
       </form>
     </div>
