@@ -106,6 +106,7 @@ function VideoUpload() {
           {isUploading ? 'Uploading ...' : 'Upload'}
         </button>
       </form>
+      
     </div>
   )
 }
